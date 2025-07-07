@@ -65,8 +65,11 @@ dmypy.json
 .DS_Store
 
 
-# javascript
+# web development
 node_modules/
+.next
+
+
 
 # Logs
 *.log
