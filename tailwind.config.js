@@ -8,38 +8,45 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // Jade Scale
-        "jade-1": "#fbfefd",
-        "jade-2": "#f4fbf7",
-        "jade-3": "#e6f7ed",
-        "jade-4": "#d6f1e3",
-        "jade-5": "#c3e9d7",
-        "jade-6": "#acdec8",
-        "jade-7": "#8bceb6",
-        "jade-8": "#56ba9f",
-        "jade-9": "#29a383",
-        "jade-10": "#26997b",
-        "jade-11": "#208368",
-        "jade-12": "#1d3b31",
+        // Cyan Scale
+        "cyan-1": "#fafdfe",
+        "cyan-2": "#f2fafb",
+        "cyan-3": "#def7f9",
+        "cyan-4": "#caf1f6",
+        "cyan-5": "#b5e9f0",
+        "cyan-6": "#9ddde7",
+        "cyan-7": "#7dcedc",
+        "cyan-8": "#3db9cf",
+        "cyan-9": "#00a2c7",
+        "cyan-10": "#0797b9",
+        "cyan-11": "#107d98",
+        "cyan-12": "#0d3c48",
 
-        // Semantic Roles
-        "app-bg": "#fbfefd", // jade-1
-        "subtle-bg": "#f4fbf7", // jade-2
-        "ui-bg": "#e6f7ed", // jade-3
-        "ui-hover-bg": "#d6f1e3", // jade-4
-        "ui-active-bg": "#c3e9d7", // jade-5
+        // Semantic Roles (Light Mode)
+        "app-bg": "#fafdfe", // cyan-1
+        "subtle-bg": "#f2fafb", // cyan-2
+        "ui-bg": "#def7f9", // cyan-3
+        "ui-hover-bg": "#caf1f6", // cyan-4
+        "ui-active-bg": "#b5e9f0", // cyan-5
 
-        "border-subtle": "#acdec8", // jade-6
-        "border-default": "#8bceb6", // jade-7
-        "border-strong": "#56ba9f", // jade-8
+        "border-subtle": "#9ddde7", // cyan-6
+        "border-default": "#7dcedc", // cyan-7
+        "border-strong": "#3db9cf", // cyan-8
 
-        "solid-bg": "#29a383", // jade-9
-        "solid-hover-bg": "#26997b", // jade-10
+        "solid-bg": "#00a2c7", // cyan-9
+        "solid-hover-bg": "#0797b9", // cyan-10
 
-        muted: "#208368", // jade-11
-        strong: "#1d3b31", // jade-12
+        muted: "#107d98", // cyan-11
+        strong: "#0d3c48", // cyan-12
       },
       fontFamily: {
+        sans: ["var(--font-inter)", "ui-sans-serif", "system-ui", "sans-serif"],
+        display: [
+          "var(--font-poppins)",
+          "ui-sans-serif",
+          "system-ui",
+          "sans-serif",
+        ],
         "geist-sans": ["var(--font-geist-sans)"],
         "geist-mono": ["var(--font-geist-mono)"],
       },

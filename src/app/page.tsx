@@ -1,11 +1,11 @@
-import { Header } from "./components/HeaderComps/Header";
-import { Hero } from "./components/HeroComps/Hero";
+import { Hero } from "../components/hero/Hero";
+import { BackgroundLayout } from "../components/layout/BackgroundLayout";
 
 export default function Home() {
   return (
-    <main>
-      <Header />
+    <BackgroundLayout>
       <Hero />
-    </main>
+      {/*<ChatCTA />*/}
+    </BackgroundLayout>
   );
 }
