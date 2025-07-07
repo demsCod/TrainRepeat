@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { Logo } from "./Logo";
 import { Navigation } from "./Navigation";
 import { HeaderCTA } from "./HeaderCTA";
 import { MobileMenu } from "./MobileMenu";
@@ -19,11 +18,11 @@ export const Header = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <div className="flex items-center">
+          {/*<div className="flex items-center">
             <div className="flex-shrink-0">
               <Logo />
             </div>
-          </div>
+          </div>*/}
 
           {/* Navigation Desktop */}
           <Navigation />
