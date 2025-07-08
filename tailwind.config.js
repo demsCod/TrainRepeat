@@ -23,7 +23,7 @@ module.exports = {
         "cyan-12": "#0d3c48",
 
         // Semantic Roles (Light Mode)
-        "app-bg": "#fafdfe", // cyan-1
+        "app-bg": "#000000", // cyan-1
         "subtle-bg": "#f2fafb", // cyan-2
         "ui-bg": "#def7f9", // cyan-3
         "ui-hover-bg": "#caf1f6", // cyan-4
