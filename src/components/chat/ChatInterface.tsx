@@ -183,7 +183,7 @@ const ChatMessage: React.FC<{ message: ChatMessageType }> = ({ message }) => {
           <div
             className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${
               isUser
-                ? "bg-gradient-to-br from-jade-8 to-jade-9"
+                ? "bg-cyan-9"
                 : "bg-gradient-to-br from-gray-100 to-gray-200"
             }`}
           >
@@ -221,9 +221,7 @@ const ChatMessage: React.FC<{ message: ChatMessageType }> = ({ message }) => {
           {/* Message content */}
           <div
             className={`px-4 py-3 rounded-2xl ${
-              isUser
-                ? "bg-gradient-to-r from-jade-8 to-jade-9 text-white"
-                : "bg-gray-50 text-gray-900"
+              isUser ? "bg-cyan-9 text-white" : "bg-gray-50 text-gray-900"
             }`}
           >
             <div className="whitespace-pre-wrap">{message.content}</div>

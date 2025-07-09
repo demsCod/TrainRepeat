@@ -108,7 +108,7 @@ export const ChatCTA: React.FC = () => {
             <div className="space-y-4">
               <Link
                 href="/chat"
-                className="group inline-flex items-center gap-3 px-12 py-5 bg-gradient-to-r from-jade-8 to-jade-9 text-white text-xl font-bold rounded-2xl hover:from-jade-9 hover:to-jade-10 transform hover:scale-105 transition-all duration-300 shadow-2xl hover:shadow-3xl"
+                className="group inline-flex items-center gap-3 px-12 py-5  bg-cyan-9 hover:bg-cyan-10 text-white text-xl font-bold rounded-2xl  transform hover:scale-105 transition-all duration-300 shadow-2xl hover:shadow-3xl"
               >
                 Créer mon programme
                 <svg
