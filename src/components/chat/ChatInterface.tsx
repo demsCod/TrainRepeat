@@ -34,9 +34,9 @@ export const ChatInterface: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col h-full max-w-4xl mx-auto bg-cyan-2/80 backdrop-blur-sm rounded-2xl shadow-xl border border-cyan-6/30 overflow-hidden">
+    <div className="flex flex-col h-full max-w-4xl mx-auto bg-surface/80 backdrop-blur-sm rounded-2xl shadow-xl border border-border-subtle/30 overflow-hidden">
       {/* Header */}
-      <div className="bg-gradient-to-r from-cyan-9 to-cyan-10 px-6 py-4">
+      <div className="bg-gradient-to-r from-primary to-primary-hover px-6 py-4">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
             <svg
@@ -57,7 +57,7 @@ export const ChatInterface: React.FC = () => {
             <h2 className="text-xl font-display font-bold text-white">
               Coach IA
             </h2>
-            <p className="text-cyan-1 text-sm font-light">
+            <p className="text-text text-sm font-light">
               Votre assistant personnel d&apos;entraînement
             </p>
           </div>
@@ -71,7 +71,7 @@ export const ChatInterface: React.FC = () => {
       >
         {messages.length === 0 ? (
           <div className="text-center py-12">
-            <div className="w-16 h-16 bg-gradient-to-br from-cyan-9 to-cyan-10 rounded-full flex items-center justify-center mx-auto mb-4">
+            <div className="w-16 h-16 bg-gradient-to-br from-primary to-primary-hover rounded-full flex items-center justify-center mx-auto mb-4">
               <svg
                 className="w-8 h-8 text-white"
                 fill="none"
@@ -86,23 +86,20 @@ export const ChatInterface: React.FC = () => {
                 />
               </svg>
             </div>
-            <h3 className="text-lg font-display font-semibold text-cyan-12 mb-2">
+            <h3 className="text-lg font-display font-semibold text-text mb-2">
               Créons votre programme personnalisé
             </h3>
-            <p className="text-cyan-11 max-w-md mx-auto">
+            <p className="text-text-muted max-w-md mx-auto">
               Décrivez-moi vos objectifs, votre disponibilité et vos
               préférences. Je vais créer un programme d&apos;entraînement adapté
               à vos besoins.
             </p>
             <div className="mt-6 space-y-2">
-              <div className="text-sm text-cyan-11/70">Exemples :</div>
+              <div className="text-sm text-text-muted/70">Exemples :</div>
               <div className="space-y-1 text-sm">
-                <div className="bg-cyan-3 text-cyan-11 px-3 py-2 rounded-lg inline-block">
+                <div className="bg-surface-hover text-text-muted px-2 py-2 rounded-lg inline-block">
                   &quot;Programme muscu 4x/semaine, objectif prise de
                   masse&quot;
-                </div>
-                <div className="bg-cyan-3 text-cyan-11 px-3 py-2 rounded-lg inline-block">
-                  &quot;Cardio 3 fois par semaine pour perdre du poids&quot;
                 </div>
               </div>
             </div>
@@ -116,7 +113,7 @@ export const ChatInterface: React.FC = () => {
       </div>
 
       {/* Input */}
-      <div className="border-t border-cyan-6/30 p-4 bg-cyan-1/50">
+      <div className="border-t border-border-subtle/30 p-4 bg-app-bg/50">
         <form onSubmit={handleSubmit} className="flex gap-3">
           <div className="flex-1">
             <textarea
@@ -124,7 +121,7 @@ export const ChatInterface: React.FC = () => {
               onChange={(e) => setInputValue(e.target.value)}
               onKeyPress={handleKeyPress}
               placeholder="Décrivez votre programme d'entraînement idéal..."
-              className="w-full px-4 py-3 border border-cyan-6/30 rounded-xl focus:ring-2 focus:ring-cyan-9/20 focus:border-cyan-9 outline-none resize-none transition-all duration-200 bg-white/80 text-cyan-12 placeholder-cyan-11/50"
+              className="w-full px-4 py-3 border border-border-subtle/30 rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none resize-none transition-all duration-200 bg-ui-bg text-text placeholder-text-muted/50"
               rows={2}
               disabled={isLoading}
             />
@@ -134,8 +131,8 @@ export const ChatInterface: React.FC = () => {
             disabled={!inputValue.trim() || isLoading}
             className={`px-6 py-3 rounded-xl font-semibold transition-all duration-200 ${
               inputValue.trim() && !isLoading
-                ? "bg-gradient-to-r from-cyan-9 to-cyan-10 text-white hover:from-cyan-10 hover:to-cyan-11 transform hover:scale-105 shadow-lg"
-                : "bg-gray-200 text-gray-400 cursor-not-allowed"
+                ? "bg-gradient-to-r from-primary to-primary-hover text-white hover:from-primary-hover hover:to-primary-strong transform hover:scale-105 shadow-lg"
+                : "bg-ui-bg text-text-low cursor-not-allowed"
             }`}
           >
             {isLoading ? (
@@ -183,8 +180,8 @@ const ChatMessage: React.FC<{ message: ChatMessageType }> = ({ message }) => {
           <div
             className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${
               isUser
-                ? "bg-cyan-9"
-                : "bg-gradient-to-br from-gray-100 to-gray-200"
+                ? "bg-primary"
+                : "bg-gradient-to-br from-ui-bg to-ui-bg-hover"
             }`}
           >
             {isUser ? (
@@ -203,7 +200,7 @@ const ChatMessage: React.FC<{ message: ChatMessageType }> = ({ message }) => {
               </svg>
             ) : (
               <svg
-                className="w-5 h-5 text-gray-600"
+                className="w-5 h-5 text-text-low"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -221,7 +218,7 @@ const ChatMessage: React.FC<{ message: ChatMessageType }> = ({ message }) => {
           {/* Message content */}
           <div
             className={`px-4 py-3 rounded-2xl ${
-              isUser ? "bg-cyan-9 text-white" : "bg-gray-50 text-gray-900"
+              isUser ? "bg-primary text-white" : "bg-ui-bg text-text-high"
             }`}
           >
             <div className="whitespace-pre-wrap">{message.content}</div>
@@ -248,7 +245,7 @@ const ChatMessage: React.FC<{ message: ChatMessageType }> = ({ message }) => {
 
         {/* Timestamp */}
         <div
-          className={`text-xs text-muted/60 mt-1 ${
+          className={`text-xs text-text-muted/60 mt-1 ${
             isUser ? "text-right" : "text-left"
           } ml-11`}
         >

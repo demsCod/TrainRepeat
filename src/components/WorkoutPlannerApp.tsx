@@ -27,10 +27,10 @@ export const WorkoutPlannerApp: React.FC = () => {
         <div className="mb-8">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-4xl font-display font-bold text-cyan-12 mb-2">
+              <h1 className="text-4xl font-display font-bold text-text mb-2">
                 Planificateur d&apos;Entraînement IA
               </h1>
-              <p className="text-xl text-cyan-11 font-light">
+              <p className="text-xl text-text-muted font-light">
                 Créez votre programme personnalisé avec l&apos;intelligence
                 artificielle
               </p>
@@ -38,7 +38,7 @@ export const WorkoutPlannerApp: React.FC = () => {
             {currentPlan && (
               <button
                 onClick={handleClearAll}
-                className="px-4 py-2 bg-red-100 hover:bg-red-200 text-red-700 rounded-xl font-medium transition-colors shadow-sm"
+                className="px-4 py-2 bg-accent-danger/10 hover:bg-accent-danger/20 text-accent-danger rounded-xl font-medium transition-colors shadow-sm"
               >
                 Nouveau programme
               </button>
@@ -52,8 +52,8 @@ export const WorkoutPlannerApp: React.FC = () => {
             onClick={() => setActiveTab("chat")}
             className={`px-6 py-3 rounded-xl font-semibold transition-all ${
               activeTab === "chat"
-                ? "bg-gradient-to-r from-cyan-9 to-cyan-10 text-white shadow-lg"
-                : "bg-cyan-2/80 text-cyan-11 hover:bg-cyan-3/80 border border-cyan-6/30"
+                ? "bg-gradient-to-r from-primary to-primary-hover text-white shadow-lg"
+                : "bg-surface/80 text-text-muted hover:bg-surface-hover/80 border border-border-subtle/30"
             }`}
           >
             <div className="flex items-center gap-2">
@@ -77,8 +77,8 @@ export const WorkoutPlannerApp: React.FC = () => {
             onClick={() => setActiveTab("calendar")}
             className={`px-6 py-3 rounded-xl font-semibold transition-all ${
               activeTab === "calendar"
-                ? "bg-gradient-to-r from-cyan-9 to-cyan-10 text-white shadow-lg"
-                : "bg-cyan-2/80 text-cyan-11 hover:bg-cyan-3/80 border border-cyan-6/30"
+                ? "bg-gradient-to-r from-primary to-primary-hover text-white shadow-lg"
+                : "bg-surface/80 text-text-muted hover:bg-surface-hover/80 border border-border-subtle/30"
             }`}
           >
             <div className="flex items-center gap-2">
@@ -96,9 +96,6 @@ export const WorkoutPlannerApp: React.FC = () => {
                 />
               </svg>
               Calendrier
-              {currentPlan && (
-                <div className="w-2 h-2 bg-cyan-3 rounded-full animate-pulse" />
-              )}
             </div>
           </button>
         </div>
@@ -118,21 +115,21 @@ export const WorkoutPlannerApp: React.FC = () => {
 
         {/* Quick Actions */}
         {currentPlan && (
-          <div className="mt-8 bg-cyan-2/80 backdrop-blur-sm rounded-xl p-6 border border-cyan-6/30">
-            <h3 className="text-lg font-display font-semibold text-cyan-12 mb-4">
+          <div className="mt-8 bg-surface/80 backdrop-blur-sm rounded-xl p-6 border border-border-subtle/30">
+            <h3 className="text-lg font-display font-semibold text-text mb-4">
               Actions rapides
             </h3>
             <div className="flex flex-wrap gap-3">
-              <button className="px-4 py-2 bg-gradient-to-r from-cyan-9 to-cyan-10 text-white rounded-lg font-medium hover:from-cyan-10 hover:to-cyan-11 transition-all transform hover:scale-105 shadow-sm">
+              <button className="px-4 py-2 bg-gradient-to-r from-primary to-primary-hover text-white rounded-lg font-medium hover:from-primary-hover hover:to-primary-strong transition-all transform hover:scale-105 shadow-sm">
                 Exporter en PDF
               </button>
-              <button className="px-4 py-2 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors shadow-sm">
+              <button className="px-4 py-2 bg-accent-secondary text-white rounded-lg font-medium hover:bg-accent-secondary-hover transition-colors shadow-sm">
                 Partager le programme
               </button>
-              <button className="px-4 py-2 bg-purple-600 text-white rounded-lg font-medium hover:bg-purple-700 transition-colors shadow-sm">
+              <button className="px-4 py-2 bg-accent-tertiary text-white rounded-lg font-medium hover:bg-accent-tertiary-hover transition-colors shadow-sm">
                 Modifier le programme
               </button>
-              <button className="px-4 py-2 bg-orange-600 text-white rounded-lg font-medium hover:bg-orange-700 transition-colors shadow-sm">
+              <button className="px-4 py-2 bg-accent-warning text-white rounded-lg font-medium hover:bg-accent-warning-hover transition-colors shadow-sm">
                 Rappels notifications
               </button>
             </div>

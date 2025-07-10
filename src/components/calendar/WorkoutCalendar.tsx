@@ -48,8 +48,8 @@ export const WorkoutCalendar: React.FC = () => {
             duration,
             workout,
             color: getEventColor(workout.type, workout.details),
-            top: (startHour - 6) * 60,
-            height: Math.max(60, (duration / 60) * 60),
+            top: (startHour - 6) * 120,
+            height: Math.max(120, (duration / 60) * 120),
           });
         }
       }
@@ -79,9 +79,9 @@ export const WorkoutCalendar: React.FC = () => {
 
   if (!currentPlan) {
     return (
-      <div className="flex flex-col items-center justify-center h-96 bg-cyan-2/50 rounded-2xl border-2 border-dashed border-cyan-6/50">
+      <div className="flex flex-col items-center justify-center h-96 bg-app-bg rounded-2xl border-2 border-dashed border-border-subtle">
         <div className="text-center space-y-4">
-          <div className="w-16 h-16 bg-gradient-to-br from-cyan-9 to-cyan-10 rounded-full flex items-center justify-center mx-auto">
+          <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto">
             <svg
               className="w-8 h-8 text-white"
               fill="none"
@@ -97,10 +97,10 @@ export const WorkoutCalendar: React.FC = () => {
             </svg>
           </div>
           <div>
-            <h3 className="text-lg font-display font-semibold text-cyan-12 mb-2">
+            <h3 className="text-lg font-display font-semibold text-text-high mb-2">
               Aucun programme généré
             </h3>
-            <p className="text-cyan-11">
+            <p className="text-text-low">
               Utilisez le chat pour créer votre programme personnalisé
             </p>
           </div>
@@ -110,15 +110,15 @@ export const WorkoutCalendar: React.FC = () => {
   }
 
   return (
-    <div className="w-full max-w-7xl mx-auto bg-white rounded-3xl shadow-2xl overflow-hidden">
+    <div className="w-full max-w-7xl mx-auto border-2 border-border-subtle bg-app-bg rounded-3xl shadow-2xl overflow-hidden">
       {/* Header avec navigation */}
-      <div className="bg-gradient-to-r from-cyan-9 via-cyan-10 to-cyan-9 px-6 py-4">
+      <div className=" px-6 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
+              <div className="w-10 h-10 rounded-full flex items-center justify-center">
                 <svg
-                  className="w-5 h-5 text-white"
+                  className="w-8 h-8 text-text-high"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -132,13 +132,15 @@ export const WorkoutCalendar: React.FC = () => {
                 </svg>
               </div>
               <div>
-                <h1 className="text-xl font-bold text-white">
-                  {currentWeek.toLocaleDateString("fr-FR", {
-                    month: "long",
-                    year: "numeric",
-                  })}
+                <h1 className="text-xl font-bold text-text-high">
+                  <span className="text-text-high font-bold font-poppins">
+                    {currentWeek.toLocaleDateString("fr-FR", {
+                      month: "long",
+                      year: "numeric",
+                    })}
+                  </span>
                 </h1>
-                <p className="text-sm text-cyan-1">
+                <p className="text-sm text-text-low">
                   Programme d&apos;entraînement
                 </p>
               </div>
@@ -146,20 +148,9 @@ export const WorkoutCalendar: React.FC = () => {
           </div>
 
           <div className="flex items-center gap-2">
-            <div className="flex bg-cyan-8/50 rounded-xl p-1">
-              <button className="px-3 py-1 bg-cyan-7 text-white rounded-lg text-sm font-medium">
-                Mois
-              </button>
-              <button className="px-3 py-1 text-cyan-1 hover:text-white rounded-lg text-sm font-medium">
-                Semaine
-              </button>
-              <button className="px-3 py-1 text-cyan-1 hover:text-white rounded-lg text-sm font-medium">
-                Jour
-              </button>
-            </div>
             <button
               onClick={() => navigateWeek("prev")}
-              className="p-2 text-cyan-1 hover:text-white hover:bg-cyan-8/50 rounded-xl transition-all"
+              className="p-2 text-text-low hover:text-text-high hover:bg-ui-bg-hover rounded-xl transition-all"
             >
               <svg
                 className="w-5 h-5"
@@ -177,13 +168,13 @@ export const WorkoutCalendar: React.FC = () => {
             </button>
             <button
               onClick={goToToday}
-              className="px-3 py-1 text-sm font-medium text-cyan-1 hover:text-white hover:bg-cyan-8/50 rounded-xl transition-all"
+              className="px-3 py-1 text-sm font-medium text-text-low hover:text-text-high hover:bg-ui-bg-hover rounded-xl transition-all"
             >
               Aujourd&apos;hui
             </button>
             <button
               onClick={() => navigateWeek("next")}
-              className="p-2 text-cyan-1 hover:text-white hover:bg-cyan-8/50 rounded-xl transition-all"
+              className="p-2 text-text-low hover:text-text-high hover:bg-ui-bg-hover rounded-xl transition-all"
             >
               <svg
                 className="w-5 h-5"
@@ -204,29 +195,29 @@ export const WorkoutCalendar: React.FC = () => {
       </div>
 
       {/* Calendrier principal */}
-      <div className="bg-cyan-1/30 max-h-[600px] overflow-y-auto">
+      <div className="bg-app-bg max-h-[600px] overflow-y-auto">
         {/* En-têtes des jours */}
-        <div className="grid grid-cols-8 bg-white border-b border-cyan-6/20 sticky top-0 z-10">
+        <div className="grid grid-cols-8 bg-app-bg sticky top-0 z-10">
           <div className="p-3"></div>
           {weekDays.map((day, index) => (
             <div
               key={index}
-              className={`p-3 text-center border-r border-cyan-6/20 last:border-r-0 ${
+              className={`p-3 text-center ${
                 day.isToday
-                  ? "bg-gradient-to-br from-cyan-9 to-cyan-10 text-white"
-                  : "bg-white text-cyan-12"
+                  ? "bg-primary rounded-3xl text-text-high"
+                  : "bg-app-bg/100 rounded-3xl text-text-high"
               }`}
             >
               <div
                 className={`text-xs font-medium uppercase tracking-wider ${
-                  day.isToday ? "text-cyan-1" : "text-cyan-11"
+                  day.isToday ? "text-text-high" : "text-text-low"
                 }`}
               >
                 {day.shortName}
               </div>
               <div
                 className={`text-2xl font-bold mt-1 ${
-                  day.isToday ? "text-white" : "text-cyan-12"
+                  day.isToday ? "text-text-high" : "text-text-high"
                 }`}
               >
                 {day.dayNumber}
@@ -236,14 +227,11 @@ export const WorkoutCalendar: React.FC = () => {
         </div>
 
         {/* Grille horaire */}
-        <div className="relative bg-white">
+        <div className="relative bg-app-bg">
           {Array.from({ length: 16 }, (_, i) => i + 6).map((hour) => (
-            <div
-              key={hour}
-              className="grid grid-cols-8 border-b border-cyan-6/10 min-h-[60px]"
-            >
-              <div className="p-3 text-right border-r border-cyan-6/20 bg-cyan-1/20 flex items-start">
-                <span className="text-xs font-medium text-cyan-11">
+            <div key={hour} className="grid grid-cols-8 min-h-[120px]">
+              <div className="p-3 text-right  flex items-start">
+                <span className="text-lg font-medium text-text-low">
                   {hour.toString().padStart(2, "0")}:00
                 </span>
               </div>
@@ -251,11 +239,11 @@ export const WorkoutCalendar: React.FC = () => {
               {weekDays.map((day, dayIndex) => (
                 <div
                   key={`${hour}-${dayIndex}`}
-                  className="relative border-r border-cyan-6/10 last:border-r-0 hover:bg-cyan-2/20 transition-colors min-h-[60px]"
+                  className="relative hover:bg-ui-bg-hover transition-colors min-h-[120px]"
                 >
                   {day.events
                     .filter((event) => {
-                      const eventHour = Math.floor(event.top / 60) + 6;
+                      const eventHour = Math.floor(event.top / 120) + 6;
                       return eventHour === hour;
                     })
                     .map((event) => (
@@ -264,20 +252,23 @@ export const WorkoutCalendar: React.FC = () => {
                         onClick={() => setSelectedEvent(event)}
                         className={`absolute inset-x-1 rounded-xl p-2 cursor-pointer transition-all hover:scale-102 hover:shadow-lg group ${event.color} shadow-md`}
                         style={{
-                          height: `${Math.max(48, event.height * 0.8)}px`,
+                          height: `${Math.max(
+                            80,
+                            (event.height / 60) * 120
+                          )}px`,
                           top: "4px",
                         }}
                       >
                         <div className="flex items-center gap-1 mb-1">
-                          <div className="w-1.5 h-1.5 bg-white/80 rounded-full"></div>
-                          <div className="text-xs font-medium text-white/90">
+                          <div className="w-1.5 h-1.5 bg-text-high rounded-full"></div>
+                          <div className="text-xs font-medium text-text-high">
                             {event.startTime}
                           </div>
                         </div>
-                        <div className="text-xs font-semibold text-white truncate mb-1">
+                        <div className="text-xs font-semibold text-text-high truncate mb-1">
                           {event.title}
                         </div>
-                        <div className="text-xs text-white/80">
+                        <div className="text-xs text-text-low">
                           {event.duration} min
                         </div>
                         {event.workout.exercises &&
@@ -288,12 +279,12 @@ export const WorkoutCalendar: React.FC = () => {
                                 .map((_, i) => (
                                   <div
                                     key={i}
-                                    className="w-3 h-3 bg-white/20 rounded-full border border-white/30"
+                                    className="w-3 h-3 bg-ui-bg-hover rounded-full border border-border"
                                   />
                                 ))}
                               {event.workout.exercises.length > 2 && (
-                                <div className="w-3 h-3 bg-white/20 rounded-full border border-white/30 flex items-center justify-center">
-                                  <span className="text-xs text-white/80">
+                                <div className="w-3 h-3 bg-ui-bg-hover rounded-full border border-border flex items-center justify-center">
+                                  <span className="text-xs text-text-low">
                                     +
                                   </span>
                                 </div>
@@ -338,46 +329,45 @@ function getEventTitle(workout: WorkoutPlan, index: number): string {
 function getEventColor(type: string, details: string): string {
   const detailsLower = details.toLowerCase();
 
-  if (type === "Rest") return "bg-gradient-to-br from-cyan-4 to-cyan-5";
-  if (type === "Active Recovery")
-    return "bg-gradient-to-br from-cyan-6 to-cyan-7";
+  if (type === "Rest") return "bg-ui-bg-hover";
+  if (type === "Active Recovery") return "bg-ui-bg-active";
 
-  // Cardio - Cyan foncé
+  // Cardio - Couleur principale
   if (detailsLower.includes("cardio") || detailsLower.includes("course")) {
-    return "bg-gradient-to-br from-cyan-8 to-cyan-9";
+    return "bg-primary";
   }
-  // HIIT - Cyan intense
+  // HIIT - Couleur intense
   if (detailsLower.includes("hiit") || detailsLower.includes("interval")) {
-    return "bg-gradient-to-br from-cyan-9 to-cyan-10";
+    return "bg-primary-hover";
   }
-  // Yoga/Stretching - Cyan clair
+  // Yoga/Stretching - Couleur douce
   if (detailsLower.includes("yoga") || detailsLower.includes("stretching")) {
-    return "bg-gradient-to-br from-cyan-5 to-cyan-6";
+    return "bg-ui-bg-active";
   }
-  // Natation - Cyan bleuté
+  // Natation - Couleur accent
   if (detailsLower.includes("natation") || detailsLower.includes("swimming")) {
-    return "bg-gradient-to-br from-cyan-7 to-cyan-8";
+    return "bg-accent-solid";
   }
-  // Haut du corps - Cyan moyen
+  // Haut du corps - Couleur accent
   if (detailsLower.includes("haut") || detailsLower.includes("pectoraux")) {
-    return "bg-gradient-to-br from-cyan-6 to-cyan-7";
+    return "bg-accent-solid";
   }
-  // Jambes - Cyan intense
+  // Jambes - Couleur principale
   if (detailsLower.includes("jambes") || detailsLower.includes("quadriceps")) {
-    return "bg-gradient-to-br from-cyan-8 to-cyan-9";
+    return "bg-primary";
   }
-  // Dos - Cyan sombre
+  // Dos - Couleur intense
   if (detailsLower.includes("dos") || detailsLower.includes("rowing")) {
-    return "bg-gradient-to-br from-cyan-9 to-cyan-10";
+    return "bg-primary-hover";
   }
 
-  // Couleurs par défaut dans la palette cyan
+  // Couleurs par défaut avec vos aliases Radix
   const colors = [
-    "bg-gradient-to-br from-cyan-6 to-cyan-7",
-    "bg-gradient-to-br from-cyan-7 to-cyan-8",
-    "bg-gradient-to-br from-cyan-8 to-cyan-9",
-    "bg-gradient-to-br from-cyan-5 to-cyan-6",
-    "bg-gradient-to-br from-cyan-9 to-cyan-10",
+    "bg-primary",
+    "bg-primary-hover",
+    "bg-accent-solid",
+    "bg-ui-bg-active",
+    "bg-accent-solid-hover",
   ];
 
   return colors[Math.floor(Math.random() * colors.length)];

@@ -16,10 +16,10 @@ export const ChatCTA: React.FC = () => {
           <div className="space-y-8">
             {/* Header */}
             <div className="space-y-4">
-              <h2 className="text-4xl sm:text-5xl font-bold text-strong">
+              <h2 className="text-4xl sm:text-5xl font-bold text-primary">
                 Votre Coach IA Personnel
               </h2>
-              <p className="text-xl text-muted max-w-3xl mx-auto leading-relaxed">
+              <p className="text-xl text-text-muted max-w-3xl mx-auto leading-relaxed">
                 Décrivez vos objectifs et contraintes, notre IA crée
                 instantanément votre programme d&apos;entraînement personnalisé
                 et l&apos;organise dans un calendrier intelligent.
@@ -28,39 +28,39 @@ export const ChatCTA: React.FC = () => {
 
             {/* Features */}
             <div className="grid md:grid-cols-3 gap-8 my-16">
-              <div className="bg-jade-3/60 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-jade-6/30">
+              <div className="bg-ui-bg backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-border">
                 <div className="w-12 h-12 bg-gradient-to-br from-jade-8 to-jade-9 rounded-xl flex items-center justify-center mx-auto mb-4">
-                  <ChatBubbleIcon className="w-6 h-6 text-strong" />
+                  <ChatBubbleIcon className="w-6 h-6 text-primary" />
                 </div>
-                <h3 className="text-lg font-semibold text-strong mb-2">
+                <h3 className="text-lg font-semibold text-text-high mb-2">
                   Chat Intelligent
                 </h3>
-                <p className="text-muted">
+                <p className="text-text-muted">
                   Conversez naturellement avec notre IA pour définir vos
                   objectifs et préférences.
                 </p>
               </div>
 
-              <div className="bg-jade-3/60 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-jade-6/30">
+              <div className="bg-ui-bg backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-border">
                 <div className="w-12 h-12 bg-gradient-to-br from-jade-8 to-jade-9 rounded-xl flex items-center justify-center mx-auto mb-4">
-                  <LightningBoltIcon className="w-6 h-6  text-strong" />
+                  <LightningBoltIcon className="w-6 h-6  text-primary" />
                 </div>
-                <h3 className="text-lg font-semibold text-strong mb-2">
+                <h3 className="text-lg font-semibold text-text-high mb-2">
                   Programme Personnalisé
                 </h3>
-                <p className="text-muted">
+                <p className="text-text-muted">
                   Programmes adaptés à votre niveau, objectifs et disponibilité.
                 </p>
               </div>
 
-              <div className="bg-jade-3/60 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-jade-6/30">
+              <div className="bg-ui-bg backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-border">
                 <div className="w-12 h-12 bg-gradient-to-br from-jade-8 to-jade-9 rounded-xl flex items-center justify-center mx-auto mb-4">
-                  <CalendarIcon className="w-6 h-6  text-strong" />
+                  <CalendarIcon className="w-6 h-6  text-primary" />
                 </div>
-                <h3 className="text-lg font-semibold text-strong mb-2">
+                <h3 className="text-lg font-semibold text-text-high mb-2">
                   Calendrier Visuel
                 </h3>
-                <p className="text-muted">
+                <p className="text-text-muted">
                   Visualisez vos séances dans un calendrier interactif et
                   détaillé.
                 </p>
@@ -69,32 +69,32 @@ export const ChatCTA: React.FC = () => {
 
             {/* Examples */}
             <div className="bg-jade-3/40 backdrop-blur-sm rounded-2xl p-8 mb-12 border border-jade-6/20">
-              <h3 className="text-lg font-semibold text-strong mb-6">
+              <h3 className="text-lg font-semibold text-text-high mb-6">
                 Exemples de demandes
               </h3>
               <div className="grid md:grid-cols-2 gap-4">
-                <div className="bg-jade-4/80 text-jade-11 px-4 py-3 rounded-xl text-left border border-jade-6/30">
+                <div className="bg-ui-bg text-text-muted px-4 py-3 rounded-xl text-left border border-border">
                   <div className="font-medium mb-1">💪 Musculation</div>
                   <div className="text-sm opacity-90">
                     &quot;Programme muscu 4x/semaine, objectif prise de masse,
                     débutant&quot;
                   </div>
                 </div>
-                <div className="bg-jade-4/80 text-jade-11 px-4 py-3 rounded-xl text-left border border-jade-6/30">
+                <div className="bg-ui-bg text-text-muted px-4 py-3 rounded-xl text-left border border-border">
                   <div className="font-medium mb-1">🏃 Cardio</div>
                   <div className="text-sm opacity-90">
                     &quot;Entraînement cardio 3x/semaine pour perdre du
                     poids&quot;
                   </div>
                 </div>
-                <div className="bg-jade-4/80 text-jade-11 px-4 py-3 rounded-xl text-left border border-jade-6/30">
+                <div className="bg-ui-bg text-text-muted px-4 py-3 rounded-xl text-left border border-border">
                   <div className="font-medium mb-1">🥋 Mixte</div>
                   <div className="text-sm opacity-90">
                     &quot;Programme complet force + cardio, 5 jours, niveau
                     intermédiaire&quot;
                   </div>
                 </div>
-                <div className="bg-jade-4/80 text-jade-11 px-4 py-3 rounded-xl text-left border border-jade-6/30">
+                <div className="bg-ui-bg text-text-muted px-4 py-3 rounded-xl text-left border border-border">
                   <div className="font-medium mb-1">🧘 Bien-être</div>
                   <div className="text-sm opacity-90">
                     &quot;Yoga et stretching 3x/semaine, récupération
@@ -108,7 +108,7 @@ export const ChatCTA: React.FC = () => {
             <div className="space-y-4">
               <Link
                 href="/chat"
-                className="group inline-flex items-center gap-3 px-12 py-5  bg-cyan-9 hover:bg-cyan-10 text-white text-xl font-bold rounded-2xl  transform hover:scale-105 transition-all duration-300 shadow-2xl hover:shadow-3xl"
+                className="group inline-flex items-center gap-3 px-12 py-5  bg-primary hover:bg-primary-hover text-white text-xl font-bold rounded-2xl  transform hover:scale-105 transition-all duration-300 shadow-2xl hover:shadow-3xl"
               >
                 Créer mon programme
                 <svg
@@ -125,7 +125,7 @@ export const ChatCTA: React.FC = () => {
                   />
                 </svg>
               </Link>
-              <p className="text-sm text-muted/70">
+              <p className="text-sm text-text-muted/70">
                 Gratuit • Instantané • Personnalisé
               </p>
             </div>

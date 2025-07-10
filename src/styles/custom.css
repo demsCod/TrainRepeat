@@ -1,43 +1,51 @@
-/* Custom CSS variables for consistent theming - Light Mode */
+/* Custom CSS variables for consistent theming */
 :root {
-  /* Background gradients - Light Mode */
-  --bg-main: linear-gradient(135deg, #fafdfe 0%, #f2fafb 50%, #def7f9 100%);
+  /* ===== COULEURS THÉMATIQUES (Alias sémantiques) ===== */
+  /* Backgrounds */
+  --app-bg: #fafdfe;
+  --surface: #f2fafb;
+  --surface-hover: #def7f9;
+  --surface-active: #caf1f6;
+  --surface-selected: #b5e9f0;
+
+  /* Borders */
+  --border-subtle: #9ddde7;
+  --border: #7dcedc;
+  --border-strong: #3db9cf;
+
+  /* Primary/Accent */
+  --primary: #00a2c7;
+  --primary-hover: #0797b9;
+  --primary-text: #107d98;
+
+  /* Text */
+  --text-muted: #107d98;
+  --text: #0d3c48;
+
+  /* ===== GRADIENTS THÉMATIQUES ===== */
+  --bg-main: linear-gradient(
+    135deg,
+    var(--app-bg) 0%,
+    var(--surface) 50%,
+    var(--surface-hover) 100%
+  );
   --bg-card: rgba(222, 247, 249, 0.8);
   --bg-card-hover: rgba(202, 241, 246, 0.9);
 
-  /* Cyan Scale */
-  --cyan-1: #fafdfe;
-  --cyan-2: #f2fafb;
-  --cyan-3: #def7f9;
-  --cyan-4: #caf1f6;
-  --cyan-5: #b5e9f0;
-  --cyan-6: #9ddde7;
-  --cyan-7: #7dcedc;
-  --cyan-8: #3db9cf;
-  --cyan-9: #00a2c7;
-  --cyan-10: #0797b9;
-  --cyan-11: #107d98;
-  --cyan-12: #0d3c48;
-
-  /* Shadows - Light Mode */
+  /* ===== SHADOWS ===== */
   --shadow-card: 0 4px 6px -1px rgba(13, 60, 72, 0.1),
     0 2px 4px -1px rgba(13, 60, 72, 0.06);
   --shadow-card-hover: 0 10px 15px -3px rgba(13, 60, 72, 0.1),
     0 4px 6px -2px rgba(13, 60, 72, 0.05);
-  --shadow-cyan: 0 10px 15px -3px rgba(0, 162, 199, 0.3),
+  --shadow-primary: 0 10px 15px -3px rgba(0, 162, 199, 0.3),
     0 4px 6px -2px rgba(0, 162, 199, 0.2);
 
-  /* Borders - Light Mode */
+  /* ===== BORDER COLORS ===== */
   --border-light: rgba(157, 221, 231, 0.5);
-  --border-cyan: rgba(0, 162, 199, 0.3);
-
-  /* Text colors - Light Mode */
-  --text-primary: #0d3c48;
-  --text-secondary: #107d98;
-  --text-cyan: #00a2c7;
+  --border-primary: rgba(0, 162, 199, 0.3);
 }
 
-/* Custom animations */
+/* ===== ANIMATIONS ===== */
 @keyframes float {
   0%,
   100% {
@@ -48,7 +56,7 @@
   }
 }
 
-@keyframes pulse-jade {
+@keyframes pulse-primary {
   0%,
   100% {
     opacity: 1;
@@ -69,7 +77,27 @@
   }
 }
 
-/* Custom utility classes */
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-up {
+  0% {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* ===== UTILITY CLASSES ===== */
 .glass-effect {
   background: var(--bg-card);
   backdrop-filter: blur(10px);
@@ -78,15 +106,39 @@
 
 .glass-effect:hover {
   background: var(--bg-card-hover);
-  border-color: var(--border-jade);
+  border-color: var(--border-primary);
 }
 
-.cyan-gradient {
-  background: linear-gradient(135deg, var(--cyan-9), var(--cyan-10));
+.primary-gradient {
+  background: linear-gradient(135deg, var(--primary), var(--primary-hover));
 }
 
-.cyan-gradient:hover {
-  background: linear-gradient(135deg, var(--cyan-10), var(--cyan-11));
+.primary-gradient:hover {
+  background: linear-gradient(
+    135deg,
+    var(--primary-hover),
+    var(--primary-text)
+  );
+}
+
+.surface-gradient {
+  background: linear-gradient(135deg, var(--surface), var(--surface-hover));
+}
+
+.float-animation {
+  animation: float 6s ease-in-out infinite;
+}
+
+.pulse-primary {
+  animation: pulse-primary 3s ease-in-out infinite;
+}
+
+.fade-in {
+  animation: fade-in 0.5s ease-in-out;
+}
+
+.slide-up {
+  animation: slide-up 0.3s ease-out;
 }
 
 .float-animation {

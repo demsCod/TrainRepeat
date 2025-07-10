@@ -8,7 +8,7 @@ export const HeroCTA = () => {
       <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
         <Link
           href="/chat"
-          className="group relative px-12 py-6 bg-cyan-9 hover:bg-cyan-10 text-white rounded-2xl font-bold text-xl transition-all duration-500 transform hover:scale-105 hover:shadow-2xl hover:shadow-cyan-9/25 flex items-center gap-3 overflow-hidden"
+          className="group relative px-12 py-6 bg-primary hover:bg-primary-hover text-white rounded-2xl font-bold text-xl transition-all duration-500 transform hover:scale-105 hover:shadow-2xl hover:shadow-primary/25 flex items-center gap-3 overflow-hidden"
         >
           <span className="relative z-10 flex items-center gap-3">
             <RocketIcon className="w-6 h-6" />
@@ -19,7 +19,7 @@ export const HeroCTA = () => {
 
         <Link
           href="/chat"
-          className="group px-8 py-6 bg-transparent border-2 border-cyan-8 hover:bg-cyan-8 text-cyan-11 hover:text-white rounded-2xl font-bold text-xl transition-all duration-300 flex items-center gap-3"
+          className="group px-8 py-6 bg-transparent border-2 border-border-strong hover:bg-border-strong text-text-muted hover:text-white rounded-2xl font-bold text-xl transition-all duration-300 flex items-center gap-3"
         >
           <span className="flex items-center gap-3">
             Voir les programmes
@@ -30,10 +30,10 @@ export const HeroCTA = () => {
 
       {/* Trust indicators */}
       <div className="text-center space-y-2">
-        <p className="text-cyan-11 text-sm font-medium">
+        <p className="text-text-muted text-sm font-medium">
           ✓ Gratuit • ✓ Instantané • ✓ Programmes personnalisés
         </p>
-        <div className="flex items-center justify-center gap-6 text-cyan-11/60 text-xs font-light">
+        <div className="flex items-center justify-center gap-6 text-text-muted/60 text-xs font-light">
           <span>🔒 Sécurisé</span>
           <span>🎯 Personnalisé</span>
           <span>⚡ Rapide</span>

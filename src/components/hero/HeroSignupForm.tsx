@@ -51,12 +51,12 @@ export const HeroSignupForm: React.FC = () => {
 
   return (
     <div className="w-full max-w-sm">
-      <div className="bg-cyan-2/80 backdrop-blur-sm border border-cyan-6/30 rounded-2xl p-6 lg:p-8 shadow-2xl">
+      <div className="bg-surface/80 backdrop-blur-sm border border-border-subtle/30 rounded-2xl p-6 lg:p-8 shadow-2xl">
         <div className="text-center mb-6">
-          <h2 className="text-xl lg:text-2xl font-display font-bold text-cyan-12 mb-2">
+          <h2 className="text-xl lg:text-2xl font-display font-bold text-text mb-2">
             Créez votre compte gratuit
           </h2>
-          <p className="text-cyan-11 text-sm font-light">
+          <p className="text-text-muted text-sm font-light">
             Commencez votre transformation dès aujourd&apos;hui
           </p>
         </div>
@@ -65,7 +65,7 @@ export const HeroSignupForm: React.FC = () => {
         <div className="space-y-3 mb-6">
           <button
             onClick={handleGoogleSignIn}
-            className="w-full flex items-center justify-center gap-3 bg-white border border-cyan-6/30 hover:border-cyan-7 text-cyan-12 py-3 px-4 rounded-xl font-medium transition-all duration-200 hover:shadow-md"
+            className="w-full flex items-center justify-center gap-3  border border-border-subtle/30 hover:border-border text-text py-3 px-4 rounded-xl font-medium transition-all duration-200 hover:shadow-md"
           >
             <svg className="w-5 h-5" viewBox="0 0 24 24">
               <path
@@ -90,7 +90,7 @@ export const HeroSignupForm: React.FC = () => {
 
           <button
             onClick={handleAppleSignIn}
-            className="w-full flex items-center justify-center gap-3 bg-black hover:bg-gray-800 text-white py-3 px-4 rounded-xl font-medium transition-all duration-200 hover:shadow-md"
+            className="w-full flex items-center justify-center gap-3 bg-ui-bg   hover:bg-neutral-hover text-text-muted py-3 px-4 rounded-xl font-medium transition-all duration-200 hover:shadow-md"
           >
             <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
               <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
@@ -101,10 +101,10 @@ export const HeroSignupForm: React.FC = () => {
 
         <div className="relative mb-6">
           <div className="absolute inset-0 flex items-center">
-            <div className="w-full border-t border-cyan-6/30"></div>
+            <div className="w-full border-t border-border-subtle/30"></div>
           </div>
           <div className="relative flex justify-center text-sm">
-            <span className="px-2 bg-cyan-2/80 text-cyan-11">ou</span>
+            <span className="px-2 bg-surface/80 text-text-muted">ou</span>
           </div>
         </div>
 
@@ -116,7 +116,7 @@ export const HeroSignupForm: React.FC = () => {
               placeholder="Adresse email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-4 py-3 border border-cyan-6/30 rounded-xl bg-cyan-1/50 text-cyan-12 placeholder-cyan-11/60 focus:outline-none focus:ring-2 focus:ring-cyan-8 focus:border-transparent transition-all duration-200"
+              className="w-full px-4 py-3 border border-border-subtle/30 rounded-xl bg-app-bg/50 text-text placeholder-text-muted/60 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200"
               required
             />
           </div>
@@ -127,13 +127,13 @@ export const HeroSignupForm: React.FC = () => {
               placeholder="Mot de passe"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-4 py-3 pr-12 border border-cyan-6/30 rounded-xl bg-cyan-1/50 text-cyan-12 placeholder-cyan-11/60 focus:outline-none focus:ring-2 focus:ring-cyan-8 focus:border-transparent transition-all duration-200"
+              className="w-full px-4 py-3 pr-12 border border-border-subtle/30 rounded-xl bg-app-bg/50 text-text placeholder-text-muted/60 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200"
               required
             />
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-3 top-1/2 transform -translate-y-1/2 text-cyan-11 hover:text-cyan-10 transition-colors"
+              className="absolute right-3 top-1/2 transform -translate-y-1/2 text-text-muted hover:text-primary-hover transition-colors"
             >
               {showPassword ? (
                 <EyeClosedIcon className="w-5 h-5" />
@@ -146,19 +146,25 @@ export const HeroSignupForm: React.FC = () => {
           <button
             type="submit"
             disabled={isLoading}
-            className="w-full bg-gradient-to-r from-cyan-9 to-cyan-10 text-white py-3 px-6 rounded-xl font-semibold hover:from-cyan-10 hover:to-cyan-11 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 transform hover:scale-105 shadow-lg"
+            className="w-full bg-gradient-to-r from-primary to-primary-hover text-white py-3 px-6 rounded-xl font-semibold hover:from-primary-hover hover:to-primary-strong disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 transform hover:scale-105 shadow-lg"
           >
             {isLoading ? "Création en cours..." : "Créer mon compte"}
           </button>
         </form>
 
-        <p className="text-xs text-cyan-11/80 text-center mt-4">
+        <p className="text-xs text-text-muted/80 text-center mt-4">
           En vous inscrivant, vous acceptez nos{" "}
-          <a href="#" className="text-cyan-10 hover:text-cyan-9 underline">
+          <a
+            href="#"
+            className="text-primary hover:text-primary-hover underline"
+          >
             conditions d&apos;utilisation
           </a>{" "}
           et notre{" "}
-          <a href="#" className="text-cyan-10 hover:text-cyan-9 underline">
+          <a
+            href="#"
+            className="text-primary hover:text-primary-hover underline"
+          >
             politique de confidentialité
           </a>
           .

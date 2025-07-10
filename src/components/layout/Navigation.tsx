@@ -35,7 +35,7 @@ export const Navigation = ({ isMobile = false }: NavigationProps) => {
             <a
               key={item.href}
               href={item.href}
-              className="flex items-center gap-3 px-3 py-3 text-cyan-11 hover:text-cyan-12 hover:bg-cyan-3/50 rounded-xl transition-all duration-300 group"
+              className="flex items-center gap-3 px-3 py-3 text-text-muted hover:text-text hover:bg-surface-hover/50 rounded-xl transition-all duration-300 group"
             >
               <IconComponent className="w-5 h-5 transition-transform group-hover:scale-110" />
               <span className="font-medium">{item.label}</span>
@@ -44,7 +44,7 @@ export const Navigation = ({ isMobile = false }: NavigationProps) => {
             <Link
               key={item.href}
               href={item.href}
-              className="flex items-center gap-3 px-3 py-3 text-cyan-11 hover:text-cyan-12 hover:bg-cyan-3/50 rounded-xl transition-all duration-300 group"
+              className="flex items-center gap-3 px-3 py-3 text-text-muted hover:text-text hover:bg-surface-hover/50 rounded-xl transition-all duration-300 group"
             >
               <IconComponent className="w-5 h-5 transition-transform group-hover:scale-110" />
               <span className="font-medium">{item.label}</span>
@@ -63,21 +63,21 @@ export const Navigation = ({ isMobile = false }: NavigationProps) => {
           <a
             key={item.href}
             href={item.href}
-            className="flex items-center gap-2 px-4 py-2 text-cyan-11 hover:text-cyan-12 hover:bg-cyan-3/50 rounded-xl transition-all duration-300 font-medium relative group"
+            className="flex items-center gap-2 px-4 py-2 text-text-muted hover:text-text hover:bg-surface-hover/50 rounded-xl transition-all duration-300 font-medium relative group"
           >
             <IconComponent className="w-4 h-4 transition-transform group-hover:scale-110" />
             <span>{item.label}</span>
-            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-10 transition-all duration-300 group-hover:w-full rounded-full"></span>
+            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-hover transition-all duration-300 group-hover:w-full rounded-full"></span>
           </a>
         ) : (
           <Link
             key={item.href}
             href={item.href}
-            className="flex items-center gap-2 px-4 py-2 text-cyan-11 hover:text-cyan-12 hover:bg-cyan-3/50 rounded-xl transition-all duration-300 font-medium relative group"
+            className="flex items-center gap-2 px-4 py-2 text-text-muted hover:text-text hover:bg-surface-hover/50 rounded-xl transition-all duration-300 font-medium relative group"
           >
             <IconComponent className="w-4 h-4 transition-transform group-hover:scale-110" />
             <span>{item.label}</span>
-            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-10 transition-all duration-300 group-hover:w-full rounded-full"></span>
+            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-hover transition-all duration-300 group-hover:w-full rounded-full"></span>
           </Link>
         );
       })}
