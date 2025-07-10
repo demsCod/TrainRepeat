@@ -1,32 +1,119 @@
 import { NextRequest, NextResponse } from "next/server";
-import { WorkoutPlanResponse, WorkoutPlan, Exercise } from "../../types/chat";
+import {
+  WorkoutPlanResponse,
+  WorkoutPlan,
+  Exercise,
+} from "../../../types/chat";
+
+// Types pour le profil utilisateur
+interface UserProfile {
+  age?: number;
+  fitnessLevel?: string;
+  goals?: string[];
+  equipment?: string[];
+  timeAvailable?: number;
+  injuries?: string[];
+}
 
 export async function POST(request: NextRequest) {
-  try {
-    const { prompt } = await request.json();
+  let message = "";
 
-    if (!prompt) {
+  try {
+    const { message: requestMessage, userProfile } = await request.json();
+    message = requestMessage;
+
+    if (!message) {
       return NextResponse.json(
-        { error: "Le prompt est requis" },
+        { error: "Le message est requis" },
         { status: 400 }
       );
     }
 
-    // Simulation d'un appel à une API IA (remplacez par votre API réelle)
-    const response = await generateWorkoutPlan(prompt);
+    // Vérifier si une clé API IA est configurée
+    const apiKey = process.env.OPENAI_API_KEY;
+    if (!apiKey) {
+      // Fallback sur la simulation si pas d'API key
+      const response = await generateWorkoutPlanSimulation(message);
+      return NextResponse.json(response);
+    }
 
+    // Appel à l'API IA réelle
+    const response = await generateWorkoutPlanWithAI(message, userProfile);
     return NextResponse.json(response);
   } catch (error) {
     console.error("Erreur lors de la génération du plan:", error);
-    return NextResponse.json(
-      { error: "Erreur interne du serveur" },
-      { status: 500 }
-    );
+
+    // Fallback sur la simulation en cas d'erreur
+    try {
+      const fallbackResponse = await generateWorkoutPlanSimulation(message);
+      return NextResponse.json(fallbackResponse);
+    } catch {
+      return NextResponse.json(
+        { error: "Erreur interne du serveur" },
+        { status: 500 }
+      );
+    }
   }
 }
 
-// Fonction simulée - remplacez par votre appel API réel
-async function generateWorkoutPlan(
+// Fonction avec IA réelle (OpenAI)
+async function generateWorkoutPlanWithAI(
+  message: string,
+  userProfile?: UserProfile
+): Promise<WorkoutPlanResponse> {
+  const prompt = buildPrompt(message, userProfile);
+
+  const response = await fetch("https://api.openai.com/v1/chat/completions", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      model: "gpt-4o-mini",
+      messages: [
+        {
+          role: "system",
+          content: SYSTEM_PROMPT,
+        },
+        {
+          role: "user",
+          content: prompt,
+        },
+      ],
+      temperature: 0.7,
+      max_tokens: 2000,
+    }),
+  });
+
+  if (!response.ok) {
+    throw new Error(`Erreur API OpenAI: ${response.status}`);
+  }
+
+  const data = await response.json();
+  const aiResponse = data.choices[0]?.message?.content;
+
+  if (!aiResponse) {
+    throw new Error("Réponse vide de l'IA");
+  }
+
+  // Parser la réponse JSON de l'IA
+  try {
+    const parsedResponse = JSON.parse(aiResponse);
+    return {
+      plan: parsedResponse.plan,
+      summary: parsedResponse.summary,
+      goals: parsedResponse.goals,
+      duration: parsedResponse.duration,
+    };
+  } catch {
+    // Si le parsing échoue, fallback sur la simulation
+    return generateWorkoutPlanSimulation(message);
+  }
+}
+
+// Fonction simulée - utilisée comme fallback
+async function generateWorkoutPlanSimulation(
   prompt: string
 ): Promise<WorkoutPlanResponse> {
   // Simuler un délai d'API
@@ -48,6 +135,68 @@ async function generateWorkoutPlan(
   };
 }
 
+// Prompt système pour l'IA
+const SYSTEM_PROMPT = `Tu es un expert en fitness et coach sportif professionnel. 
+Tu crées des programmes d'entraînement personnalisés basés sur les besoins, objectifs et contraintes des utilisateurs.
+
+Réponds UNIQUEMENT en JSON avec cette structure exacte :
+{
+  "plan": [
+    {
+      "day": "Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday",
+      "type": "Workout|Rest|Active Recovery",
+      "details": "Description détaillée de la séance",
+      "intensity": "Low|Medium|High",
+      "duration": nombre_minutes,
+      "exercises": [
+        {
+          "name": "Nom de l'exercice",
+          "sets": nombre_series,
+          "reps": "nombre_repetitions",
+          "weight": "poids_recommandé",
+          "notes": "instructions_importantes"
+        }
+      ]
+    }
+  ],
+  "summary": "Résumé du programme en 1-2 phrases",
+  "goals": ["Objectif 1", "Objectif 2"],
+  "duration": "Durée recommandée du programme"
+}
+
+Adapte le programme selon :
+- Niveau d'expérience (débutant, intermédiaire, avancé)
+- Objectifs (force, muscle, endurance, perte de poids)
+- Équipement disponible
+- Temps disponible par séance
+- Fréquence d'entraînement souhaitée
+- Limitations/blessures
+
+Crée un programme équilibré sur 7 jours avec des jours de repos appropriés.`;
+
+// Construire le prompt utilisateur
+function buildPrompt(message: string, userProfile?: UserProfile): string {
+  let prompt = `Crée un programme d'entraînement personnalisé basé sur cette demande : "${message}"`;
+
+  if (userProfile) {
+    prompt += "\n\nInformations du profil utilisateur :";
+    if (userProfile.age) prompt += `\n- Âge : ${userProfile.age} ans`;
+    if (userProfile.fitnessLevel)
+      prompt += `\n- Niveau : ${userProfile.fitnessLevel}`;
+    if (userProfile.goals)
+      prompt += `\n- Objectifs : ${userProfile.goals.join(", ")}`;
+    if (userProfile.equipment)
+      prompt += `\n- Équipement : ${userProfile.equipment.join(", ")}`;
+    if (userProfile.timeAvailable)
+      prompt += `\n- Temps disponible : ${userProfile.timeAvailable} minutes par séance`;
+    if (userProfile.injuries)
+      prompt += `\n- Limitations : ${userProfile.injuries.join(", ")}`;
+  }
+
+  return prompt;
+}
+
+// Fonctions utilitaires pour l'analyse du prompt
 function extractFrequency(prompt: string): number {
   if (prompt.includes("6 fois") || prompt.includes("6x")) return 6;
   if (prompt.includes("5 fois") || prompt.includes("5x")) return 5;
@@ -136,7 +285,7 @@ function generatePlanBasedOnPrompt(
 }
 
 function getWorkoutDetails(focus: string, dayIndex: number): string {
-  const workoutTypes = {
+  const workoutTypes: Record<string, string[]> = {
     "la musculation": [
       "Haut du corps - Pectoraux, épaules, triceps",
       "Dos et biceps - Développement de la largeur",
@@ -171,7 +320,7 @@ function getIntensity(
 }
 
 function getExercises(focus: string, dayIndex: number): Exercise[] {
-  const exercises = {
+  const exercises: Record<string, Exercise[][]> = {
     "la musculation": [
       [
         {

@@ -18,7 +18,7 @@ export const HeroCTA = () => {
         </Link>
 
         <Link
-          href="/register"
+          href="/chat"
           className="group px-8 py-6 bg-transparent border-2 border-cyan-8 hover:bg-cyan-8 text-cyan-11 hover:text-white rounded-2xl font-bold text-xl transition-all duration-300 flex items-center gap-3"
         >
           <span className="flex items-center gap-3">

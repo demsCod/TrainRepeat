@@ -1,7 +1,7 @@
 "use client";
 
 import { create } from "zustand";
-import { ChatMessage, WorkoutPlan, ChatState } from "../types/chat";
+import { ChatMessage, WorkoutPlan, ChatState } from "../../types/chat";
 
 interface ChatStore extends ChatState {
   addMessage: (message: Omit<ChatMessage, "id" | "timestamp">) => void;
@@ -22,7 +22,7 @@ export const useChatStore = create<ChatStore>((set, get) => ({
   addMessage: (message) => {
     const newMessage: ChatMessage = {
       ...message,
-      id: Date.now().toString(),
+      id: `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
       timestamp: new Date(),
     };
     set((state) => ({
@@ -61,12 +61,26 @@ export const useChatStore = create<ChatStore>((set, get) => ({
     addMessage({ type: "user", content: prompt });
 
     // Ajouter un message de chargement pour l'IA
-    const loadingMessageId = Date.now().toString();
-    addMessage({
-      type: "ai",
+    const loadingMessageId = `${Date.now()}-loading-${Math.random()
+      .toString(36)
+      .substr(2, 9)}`;
+    const loadingMessage = {
+      type: "ai" as const,
       content: "Génération de votre programme personnalisé...",
       isLoading: true,
-    });
+    };
+
+    // Ajouter le message avec l'ID spécifique
+    set((state) => ({
+      messages: [
+        ...state.messages,
+        {
+          ...loadingMessage,
+          id: loadingMessageId,
+          timestamp: new Date(),
+        },
+      ],
+    }));
 
     try {
       setLoading(true);
@@ -77,7 +91,7 @@ export const useChatStore = create<ChatStore>((set, get) => ({
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ prompt }),
+        body: JSON.stringify({ message: prompt }),
       });
 
       if (!response.ok) {
@@ -100,11 +114,15 @@ export const useChatStore = create<ChatStore>((set, get) => ({
         ),
       }));
 
-      setPlan(data.plan);
+      // Sauvegarder le plan
+      if (data.plan) {
+        setPlan(data.plan);
+      }
     } catch (error) {
-      const errorMessage =
-        error instanceof Error ? error.message : "Une erreur est survenue";
-      setError(errorMessage);
+      console.error("Erreur lors de la génération du plan:", error);
+      setError(
+        error instanceof Error ? error.message : "Une erreur s'est produite"
+      );
 
       // Mettre à jour le message de chargement avec l'erreur
       set((state) => ({
@@ -112,7 +130,8 @@ export const useChatStore = create<ChatStore>((set, get) => ({
           msg.id === loadingMessageId
             ? {
                 ...msg,
-                content: `Désolé, une erreur est survenue : ${errorMessage}`,
+                content:
+                  "Désolé, une erreur s'est produite lors de la génération de votre programme. Veuillez réessayer.",
                 isLoading: false,
               }
             : msg
