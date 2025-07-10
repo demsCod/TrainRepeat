@@ -3,9 +3,12 @@ ENV/
 env/
 .venv/
 .env/
-.env.local
+.env.local/
 
 
+
+# pyenv
+.python-version
 
 # mypy
 .mypy_cache/
