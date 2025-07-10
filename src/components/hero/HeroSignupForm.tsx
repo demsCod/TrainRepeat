@@ -10,8 +10,8 @@ export const HeroSignupForm: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
-    console.log("Form submitted:", { email, password });
+    // Handle form submission - redirect to chat instead of complex form
+    window.location.href = "/chat";
   };
 
   return (
@@ -26,10 +26,10 @@ export const HeroSignupForm: React.FC = () => {
           </p>
         </div>
 
-        {/* Social Login Options */}
+        {/* Social Login Buttons */}
         <div className="space-y-3 mb-6">
-          <button className="w-full flex items-center justify-center gap-3 px-4 py-2.5 bg-cyan-3/50 hover:bg-cyan-4/50 border border-cyan-6/30 rounded-lg text-cyan-12 font-medium transition-all duration-200 text-sm">
-            <svg className="w-4 h-4" viewBox="0 0 24 24">
+          <button className="w-full flex items-center justify-center gap-3 bg-white border border-cyan-6/30 hover:border-cyan-7 text-cyan-12 py-3 px-4 rounded-xl font-medium transition-all duration-200 hover:shadow-md">
+            <svg className="w-5 h-5" viewBox="0 0 24 24">
               <path
                 fill="currentColor"
                 d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
@@ -50,89 +50,77 @@ export const HeroSignupForm: React.FC = () => {
             Continuer avec Google
           </button>
 
-          <button className="w-full flex items-center justify-center gap-3 px-4 py-2.5 bg-cyan-3/50 hover:bg-cyan-4/50 border border-cyan-6/30 rounded-lg text-cyan-12 font-medium transition-all duration-200 text-sm">
-            <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+          <button className="w-full flex items-center justify-center gap-3 bg-black hover:bg-gray-800 text-white py-3 px-4 rounded-xl font-medium transition-all duration-200 hover:shadow-md">
+            <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
               <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
             </svg>
             Continuer avec Apple
           </button>
         </div>
 
-        <div className="text-center text-cyan-11 text-xs mb-4">ou</div>
+        <div className="relative mb-6">
+          <div className="absolute inset-0 flex items-center">
+            <div className="w-full border-t border-cyan-6/30"></div>
+          </div>
+          <div className="relative flex justify-center text-sm">
+            <span className="px-2 bg-cyan-2/80 text-cyan-11">ou</span>
+          </div>
+        </div>
 
         {/* Email/Password Form */}
-        <form onSubmit={handleSubmit} className="space-y-3">
+        <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label
-              htmlFor="email"
-              className="block text-xs font-medium text-cyan-12 mb-1"
-            >
-              Adresse e-mail
-            </label>
             <input
               type="email"
-              id="email"
+              placeholder="Adresse email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="votre@email.com"
-              className="w-full px-3 py-2.5 bg-cyan-3/30 border border-cyan-6/30 rounded-lg text-cyan-12 placeholder-cyan-11/50 focus:outline-none focus:ring-2 focus:ring-cyan-9 focus:border-cyan-9 transition-all duration-200 text-sm"
+              className="w-full px-4 py-3 border border-cyan-6/30 rounded-xl bg-cyan-1/50 text-cyan-12 placeholder-cyan-11/60 focus:outline-none focus:ring-2 focus:ring-cyan-8 focus:border-transparent transition-all duration-200"
               required
             />
           </div>
 
-          <div>
-            <label
-              htmlFor="password"
-              className="block text-xs font-medium text-cyan-12 mb-1"
+          <div className="relative">
+            <input
+              type={showPassword ? "text" : "password"}
+              placeholder="Mot de passe"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="w-full px-4 py-3 pr-12 border border-cyan-6/30 rounded-xl bg-cyan-1/50 text-cyan-12 placeholder-cyan-11/60 focus:outline-none focus:ring-2 focus:ring-cyan-8 focus:border-transparent transition-all duration-200"
+              required
+            />
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute right-3 top-1/2 transform -translate-y-1/2 text-cyan-11 hover:text-cyan-10 transition-colors"
             >
-              Mot de passe
-            </label>
-            <div className="relative">
-              <input
-                type={showPassword ? "text" : "password"}
-                id="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Mot de passe"
-                className="w-full px-3 py-2.5 bg-cyan-3/30 border border-cyan-6/30 rounded-lg text-cyan-12 placeholder-cyan-11/50 focus:outline-none focus:ring-2 focus:ring-cyan-9 focus:border-cyan-9 transition-all duration-200 text-sm pr-10"
-                required
-              />
-              <button
-                type="button"
-                onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-cyan-11 hover:text-cyan-10 transition-colors"
-              >
-                {showPassword ? (
-                  <EyeClosedIcon className="w-4 h-4" />
-                ) : (
-                  <EyeOpenIcon className="w-4 h-4" />
-                )}
-              </button>
-            </div>
+              {showPassword ? (
+                <EyeClosedIcon className="w-5 h-5" />
+              ) : (
+                <EyeOpenIcon className="w-5 h-5" />
+              )}
+            </button>
           </div>
 
           <button
             type="submit"
-            className="w-full px-4 py-2.5 bg-gradient-to-r from-cyan-9 to-cyan-10 hover:from-cyan-10 hover:to-cyan-11 text-white font-bold rounded-lg transform hover:scale-105 transition-all duration-200 shadow-lg text-sm"
+            className="w-full bg-gradient-to-r from-cyan-9 to-cyan-10 text-white py-3 px-6 rounded-xl font-semibold hover:from-cyan-10 hover:to-cyan-11 transition-all duration-200 transform hover:scale-105 shadow-lg"
           >
-            Commencer Gratuitement
+            Créer mon compte
           </button>
         </form>
 
-        <div className="text-center mt-4">
-          <p className="text-xs text-cyan-11">
-            En continuant, vous acceptez nos{" "}
-            <a href="#" className="text-cyan-9 hover:text-cyan-10 underline">
-              Conditions d&apos;utilisation
-            </a>
-            {", "}
-            notre{" "}
-            <a href="#" className="text-cyan-9 hover:text-cyan-10 underline">
-              Politique de confidentialité
-            </a>{" "}
-            et le fait que vos données sont stockées aux États-Unis.
-          </p>
-        </div>
+        <p className="text-xs text-cyan-11/80 text-center mt-4">
+          En vous inscrivant, vous acceptez nos{" "}
+          <a href="#" className="text-cyan-10 hover:text-cyan-9 underline">
+            conditions d&apos;utilisation
+          </a>{" "}
+          et notre{" "}
+          <a href="#" className="text-cyan-10 hover:text-cyan-9 underline">
+            politique de confidentialité
+          </a>
+          .
+        </p>
       </div>
     </div>
   );
