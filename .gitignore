@@ -18,6 +18,7 @@ env/
 .env.local/
 
 
+
 # PyInstaller
 *.manifest
 *.spec
